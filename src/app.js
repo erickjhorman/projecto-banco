@@ -3,7 +3,7 @@ import express from "express";
 import morgan from "morgan";
 import { create } from "express-handlebars";
 
-import indexRoutes from "./routes/tasks.routes";
+import indexRoutes from "./routes/accounts.routes";
 
 const app = express();
 

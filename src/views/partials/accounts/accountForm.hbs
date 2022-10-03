@@ -1,8 +1,9 @@
 <div class="card card-body p-4 rounded-0 bg-dark text-white">
-  <h3>Add A Task</h3>
-  <form action="/tasks/add" method="post">
+  <h3>Add a account</h3>
+  <form action="/accounts/add" method="post">
 
     {{! Title Input }}
+    <!--
     <div class="mb-3">
       <label for="title">Write a title:</label>
       <input
@@ -14,15 +15,25 @@
         autofocus
       />
     </div>
-
+-->
     {{! Description Input }}
     <div class="mb-3">
-      <label for="description">Description</label>
+      <label for="description">Account type</label>
       <textarea
         class="form-control rounded-0 bg-dark text-white"
-        name="description"
+        name="accountType"
         cols="80"
-        placeholder="Add a Description"
+        placeholder="Add a account type"
+      ></textarea>
+    </div>
+
+     <div class="mb-3">
+      <label for="description">Number account</label>
+      <textarea
+        class="form-control rounded-0 bg-dark text-white"
+        name="accountNumber"
+        cols="80"
+        placeholder="Add a number account"
       ></textarea>
     </div>
 

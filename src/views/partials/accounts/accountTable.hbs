@@ -1,0 +1,48 @@
+{{#if accounts}}
+  <table class="table table-bordered table-hover table-dark">
+    <thead>
+      <tr>
+        <th>N°</th>
+        <!--<th>Title</th>-->
+        <th>Type Accounts</th>
+        <th>Number Account</th>
+         <th>Options</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each accounts}}
+        <tr>
+          <td>{{@index}}</td>
+           <!--<td>{{title}}</td>-->
+          <td><strong>{{accountType}}</strong></td>
+          <td>{{accountNumber}}</td>
+          <td>
+            <!--{{#if done}}-->
+              <a
+                class="btn btn-success"
+                href="/accounts/{{_id}}/toggleDone">Done</a>
+            <!--{{else}}-->
+              <a class="btn btn-dark" href="/accounts/{{_id}}/toggleDone">
+               <!-- Undone-->
+              </a>
+            <!--{{/if}}-->
+            <a href="/accounts/{{_id}}/delete" class="btn btn-danger">
+              Delete
+            </a>
+            <a href="/accounts/{{_id}}/edit" class="btn btn-info">
+              Edit
+            </a>
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+{{else}}
+  <div class="h-100 d-flex align-items-center justify-content-center">
+    <div class="text-center text-white">
+      <h1>No accounts</h1>
+      <img src="/icons/empty.svg" class="w-75" />
+    </div>
+
+  </div>
+{{/if}}
