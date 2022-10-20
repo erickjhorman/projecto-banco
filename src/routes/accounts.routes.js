@@ -1,7 +1,7 @@
 import { Router } from "express";
 import {
   createAccount,
-  deleteAccount,
+  sendUserId,
   renderAccounts,
   AccountToggleDone,
   renderAccountEdit,
@@ -24,6 +24,6 @@ router.post("/api/auth/dashboard/accounts/add", [authJwt.verifyToken, authJwt.is
 
 //router.post("/accounts/:id/edit", editAccount);
 
-//router.get("/accounts/:id/delete", deleteAccount);
+router.get("/accounts/:id", sendUserId);
 
 export default router;

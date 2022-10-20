@@ -1,12 +1,18 @@
-<div class="container p-5">
+<div class="container-fluid">
+  <h1>dsds{{res.locals.userId }}</h1>
   <div class="row">
     {{#if admin}}
     <h2>Eres usuario ADMIN</h2>
     {{/if}}
-    <div class="col-md-5">
+    <div class="col-md-3 pr-2">
       {{> accounts/accountForm }}
     </div>
     {{#if admin}}
+    <div class="col-sm-9">
+      {{>accounts/usersTable}}
+    </div>
+  {{/if}}
+  {{#if admin}}
     <div class="col-md-7">
       {{> accounts/accountTable }}
     </div>

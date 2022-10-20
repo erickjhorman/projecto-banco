@@ -2,7 +2,10 @@ import { Schema, model } from "mongoose";
 
 const AccountSchema = Schema(
   {
-    //title: { type: String, required: true, trim: true, unique: true },
+    userId: [{
+      ref: "User",
+      type: Schema.Types.ObjectId
+   }],
     accountType: {
       type: String,
       trim: true,

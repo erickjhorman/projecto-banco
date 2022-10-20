@@ -54,5 +54,8 @@ export const signin = async (req, res) => {
 
 export const logout = async (req, res) => {
     res.clearCookie("jwt");
+    res.locals.user = null
+    res.locals.userId = null
+    res.locals.admin = null
     res.redirect("/");
   };

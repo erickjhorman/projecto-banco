@@ -6,8 +6,14 @@ import Role from '../model/Role'
 export const verifyToken = async (req, res, next) => {
     //console.log(req.headers.cookie)
     const cookies = req.headers.cookie.split(";")
+    let token = 0
     console.log("cookies", cookies)
-    const token = cookies[1]
+    for(let i = 0;i<cookies.length;i++) {
+       if(cookies[i].includes("jwt")) {
+            token = cookies[i]
+            break
+       }
+    }
     try {
         const tokenStr = token.substring(5).trim()
         if (!tokenStr) {

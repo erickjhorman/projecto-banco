@@ -1,4 +1,5 @@
 import Account from "../model/Account";
+import {renderUsers} from "../controllers/users.controller"
 
 export const renderHome = async(req,res) => {
   res.render("index");
@@ -7,9 +8,13 @@ export const renderHome = async(req,res) => {
 export const renderAccounts = async (req, res) => {
   try {
     const accounts = await Account.find().lean();
-    console.log("response",accounts)
-    res.render("dashboard", {
-      accounts,
+    //console.log("response",accounts)
+  
+    const users = await renderUsers();
+    //console.log("render users in account", users)
+      res.render("dashboard", {
+        accounts,
+        users
     });
   } catch (error) {
     console.log({ error });
@@ -19,8 +24,22 @@ export const renderAccounts = async (req, res) => {
 
 export const createAccount = async (req, res, next) => {
   try {
-    console.log(req)
-    const account = new Account(req.body);
+    //console.log(req.body)
+    const cookies = req.headers.cookie.split(";")
+    let userId = 0 
+    for(let i = 0;i<cookies.length;i++) {
+      if(cookies[i].includes("userId")){
+        userId = cookies[i].substring(8)
+       }
+   }
+   
+    const {accountType} = req.body
+    const account = new Account({
+      userId : userId,
+      accountType,
+      accountNumber: Math.floor(Math.random() * 1000000000)
+    });
+   console.log("save accounts",account)
     await account.save();
     req.flash('success_msg',"Cuenta creada")
     res.redirect("/api/auth/dashboard")
@@ -53,5 +72,11 @@ export const deleteAccount = async (req, res, next) => {
   let { id } = req.params;
   await Account.remove({ _id: id });
   res.redirect("/");
+};
+
+export const sendUserId = async (req, res) => {
+  let { id } = req.params;
+  res.cookie('userId', id,{maxAge:2 * 60 * 60 * 1000,httpOnly:true})
+  res.redirect("/api/auth/dashboard");
 };
 
