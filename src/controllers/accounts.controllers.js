@@ -1,10 +1,14 @@
 import Account from "../model/Account";
 
+export const renderHome = async(req,res) => {
+  res.render("index");
+}
+
 export const renderAccounts = async (req, res) => {
   try {
     const accounts = await Account.find().lean();
     console.log("response",accounts)
-    res.render("index", {
+    res.render("dashboard", {
       accounts,
     });
   } catch (error) {
@@ -15,16 +19,15 @@ export const renderAccounts = async (req, res) => {
 
 export const createAccount = async (req, res, next) => {
   try {
-    console.log(req.body)
+    console.log(req)
     const account = new Account(req.body);
     await account.save();
-    res.redirect("/");
+    req.flash('success_msg',"Cuenta creada")
+    res.redirect("/api/auth/dashboard")
   } catch (error) {
     return res.render("error", { errorMessage: error.message });
   }
 };
-
-
 export const AccountToggleDone = async (req, res, next) => {
   let { id } = req.params;
   const account = await Account.findById(id);

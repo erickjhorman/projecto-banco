@@ -6,14 +6,17 @@ import {
   AccountToggleDone,
   renderAccountEdit,
   editAccount,
+  renderHome
 } from "../controllers/accounts.controllers";
+
+import {authJwt} from '../middleware'
 
 const router = Router();
 
 // Render all tasks
-router.get("/", renderAccounts);
-
-router.post("/accounts/add", createAccount);
+router.get("/", renderHome)
+router.get("/api/auth/dashboard",[authJwt.verifyToken], renderAccounts);
+router.post("/api/auth/dashboard/accounts/add", [authJwt.verifyToken, authJwt.isAdmin], createAccount);
 
 //router.get("/accounts/:id/toggleDone", AccountToggleDone);
 

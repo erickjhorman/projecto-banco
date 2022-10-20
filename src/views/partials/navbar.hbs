@@ -1,5 +1,23 @@
 <nav class="navbar navbar-dark bg-dark mb-4">
   <div class="container">
     <a class="navbar-brand" href="/">Sucursal virtual banco de la tierra. </a>
+    <ul class="navbar-nav  list-group-horizontal mr-6">
+       {{#if user}}
+       <h1 class="text-white">{{user.email}}</h1>
+        {{#if admin}}
+         <li>
+            <a class="nav-link p3" href="/api/auth/signup">Register</a>
+          </li>
+          {{/if}}
+           <li class="nav-item">
+            <a class="nav-link" href="/api/auth/logout">Logout</a>
+          </li>
+        {{else}}
+          <li class="nav-item">
+            <a class="nav-link" href="/api/auth/signin">Login</a>
+          </li>
+         
+        {{/if}}
+      </ul>
   </div>
 </nav>

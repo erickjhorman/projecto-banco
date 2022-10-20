@@ -1,0 +1,109 @@
+<div class="row">
+  <div class="col-md-4 mx-auto">
+    <div class="card bg-white text-white">
+      <div class="card-header pt-5">
+        <h4 class="text-center text-black">
+          Account Register
+        </h4>
+      </div>
+      <div class="card-body">
+        <form action="/api/auth/signup" method="POST">
+          <div class="mb-3">
+            <label for="name">Type id:</label>
+            <input
+              type="text"
+              class="form-control bg-white text-black"
+              name="typeId"
+              placeholder="Type id"
+              value="{{typeId}}"
+              required
+              minlength="2"
+              maxlength="2"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="name">id number:</label>
+            <input
+              type="text"
+              class="form-control bg-white text-black"
+              name="idNumber"
+              placeholder="Id number"
+              value="{{idNumber}}"
+              required
+              minlength="8"
+              maxlength="8"
+              pattern="[0-9]+"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="name">Name:</label>
+            <input
+              type="text"
+              class="form-control bg-white text-black"
+              name="username"
+              placeholder="Name"
+              value="{{name}}"
+              required
+              minlength="6"
+              maxlength="20"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="name">Last name:</label>
+            <input
+              type="text"
+              class="form-control bg-white text-black"
+              name="lastname"
+              placeholder="Last name"
+              value="{{lastname}}"
+              minlength="5"
+              maxlength="10"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="email">Email:</label>
+            <input
+              type="email"
+              class="form-control bg-white text-black"
+              name="email"
+              placeholder="Email"
+              value="{{email}}"
+              required
+              />
+          </div>
+          <div class="mb-3">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              class="form-control bg-white text-black"
+              name="password"
+              placeholder="Password"
+              value="{{password}}"
+              required
+              minlength="8"
+              maxlength="8"
+              pattern="[a-zA-Z0-9]+"
+            />
+          </div>
+        
+          <div class="mb-3">
+            <label for="confirm_password">Roles:</label>
+            <input
+              type="text"
+              class="form-control bg-white text-white"
+              name="roles"
+              placeholder="Roles"
+              value="{{roles}}"
+            />
+          </div>
+         
+          <button class="btn btn-success btn-block text-center">
+            Signup
+          </button>
+        </form>
+      </div>
+      <p class="text-center mx-auto">Already Have an Account?
+        <a href="/api/auth/signin" class="text-info">Login</a></p>
+    </div>
+  </div>
+</div>
