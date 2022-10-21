@@ -1,22 +1,29 @@
 <div class="container-fluid">
-  <h1>dsds{{res.locals.userId }}</h1>
   <div class="row">
     {{#if admin}}
+    <h1>Hola {{user.username}}</h1>
     <h2>Eres usuario ADMIN</h2>
-    {{/if}}
     <div class="col-md-3 pr-2">
       {{> accounts/accountForm }}
     </div>
-    {{#if admin}}
-    <div class="col-sm-9">
+    <div id="showUsers" class="col-sm-9">
       {{>accounts/usersTable}}
     </div>
-  {{/if}}
-  {{#if admin}}
-    <div class="col-md-7">
+   
+    <div id="showAccounts" class="col-md-9" style="display:none">
       {{> accounts/accountTable }}
+    </div>
+     <div class="col-md-9 p-5">
+      {{> accounts/usersTableLog}}
     </div>
     {{/if}}
      <div>
-  </div>
 </div>
+<!--
+<button onclick="myFunction()">Clickeame</button>
+
+<div id="myDIV" style="border:1px solid black;">
+  Este elemento aparece y desaparece con el botón
+</div>
+</div>
+-->

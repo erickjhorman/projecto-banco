@@ -22,7 +22,7 @@ export const verifyToken = async (req, res, next) => {
         } else {
             const decoded = jwt.verify(tokenStr,"banco")
             req.userId = decoded.id;
-            const user = await User.findById(req.userId, { password: 0 })
+            const user = await User.findById(req.userId, { password: 0 }).lean()
             const roles = await Role.find({ _id: { $in: user.roles } })
             if (!user) return res.status(404).json({ message: 'No user found' })
             res.locals.user = user;
@@ -44,7 +44,9 @@ export const verifyToken = async (req, res, next) => {
 
 export const isAsesor = async (req, res, next) => {
 
+
     const user = await User.findById(req.userId)
+  
     const roles = await Role.find({ _id: { $in: user.roles } })
 
     for (let i = 0; i < roles.length; i++) {
@@ -60,11 +62,26 @@ export const isAsesor = async (req, res, next) => {
 };
 
 export const isAdmin = async (req, res, next) => {
-    const user = await User.findById(req.userId)
-    const roles = await Role.find({ _id: { $in: user.roles } })
+    const cookies = req.headers.cookie.split(";")
+    let token = 0
+    console.log("cookies", cookies)
+    for(let i = 0;i<cookies.length;i++) {
+       if(cookies[i].includes("jwt")) {
+            token = cookies[i]
+            break
+       }
+    } 
+    const tokenStr = token.substring(5).trim()
+    const decoded = jwt.verify(tokenStr,"banco")
+   
+    const user = await User.findById(decoded.id)
+    console.log("user", user)
+    res.locals.user = user;
+    const roles = await Role.find({ _id: { $in: user.roles}})
     
     for (let i = 0; i < roles.length; i++) {
         if (roles[i].name === "admin") {
+            res.locals.admin = roles[i].name
             next();
             return;
         }

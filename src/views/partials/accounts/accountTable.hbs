@@ -6,7 +6,6 @@
         <th>UserId</th>
         <th>Type Accounts</th>
         <th>Number Account</th>
-         <th>Options</th>
       </tr>
     </thead>
     <tbody>
@@ -16,22 +15,26 @@
           <td>{{userId}}</td>
           <td>{{accountType}}</td>
           <td>{{accountNumber}}</td>
+         <!--
           <td>
             <!--{{#if done}}-->
+            <!--
               <a
                 class="btn btn-success btn-white"
                 href="/accounts/{{_id}}/toggleDone">Done</a>
             <!--{{else}}-->
+    <!--
               <a class="btn btn-white" href="/accounts/{{_id}}/toggleDone">
                <!-- Undone-->
+               <!--
               </a>
+            
             <!--{{/if}}-->
+            <!--
             <a href="/accounts/{{_id}}/delete" class="btn btn-danger">
               Delete
             </a>
-            <a href="/accounts/{{_id}}/edit" class="btn btn-info">
-              Edit
-            </a>
+            -->
           </td>
         </tr>
       {{/each}}

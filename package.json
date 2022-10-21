@@ -12,7 +12,8 @@
     "express-session": "^1.17.3",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.1.5",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "timeago.js": "^4.0.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.16.7",

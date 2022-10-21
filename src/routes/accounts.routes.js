@@ -9,6 +9,9 @@ import {
   renderHome
 } from "../controllers/accounts.controllers";
 
+
+import {deleteUsers} from "../controllers/users.controller"
+
 import {authJwt} from '../middleware'
 
 const router = Router();
@@ -25,5 +28,5 @@ router.post("/api/auth/dashboard/accounts/add", [authJwt.verifyToken, authJwt.is
 //router.post("/accounts/:id/edit", editAccount);
 
 router.get("/accounts/:id", sendUserId);
-
+router.get("/users/:id/delete", deleteUsers);
 export default router;

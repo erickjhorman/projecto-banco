@@ -1,0 +1,25 @@
+{{#if userLogs}}
+<h1>Tabla con los usuarios eliminados</h1>
+  <table class="table table-bordered table-hover table-white">
+    <thead>
+      <tr>
+        <th>N°</th>
+        <!--<th>Title</th>-->
+        <th>id</th>
+        <th>username</th>
+         <th>email</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each userLogs}}
+        <tr>
+          <td>{{@index}}</td>
+           <!--<td>{{title}}</td>-->
+          <td>{{_id}}</td>
+          <td >{{username}}</td>
+          <td>{{email}}</td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+{{/if}}

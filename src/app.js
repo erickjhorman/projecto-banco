@@ -3,10 +3,11 @@ import express from "express";
 import morgan from "morgan";
 import session from "express-session";
 import flash from "connect-flash";
-import { create } from "express-handlebars";
+import { create} from "express-handlebars";
 
 import {createRoles} from './libs/initSetup'
 import indexRoutes from "./routes/accounts.routes";
+import authUsers from "./routes/user.routes";
 import authRoutes from "./routes/auth.routes";
 
 
@@ -25,6 +26,7 @@ app.engine(
   }).engine
 );
 app.set("view engine", ".hbs");
+
 
 // middlewares
 app.use(morgan("dev"));

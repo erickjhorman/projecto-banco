@@ -1,5 +1,5 @@
 import Account from "../model/Account";
-import {renderUsers} from "../controllers/users.controller"
+import {renderUsers, renderUsersLog} from "../controllers/users.controller"
 
 export const renderHome = async(req,res) => {
   res.render("index");
@@ -11,10 +11,13 @@ export const renderAccounts = async (req, res) => {
     //console.log("response",accounts)
   
     const users = await renderUsers();
+    const userLogs = await renderUsersLog();
+    console.log("user logs in das", userLogs)
     //console.log("render users in account", users)
       res.render("dashboard", {
         accounts,
-        users
+        users,
+        userLogs
     });
   } catch (error) {
     console.log({ error });

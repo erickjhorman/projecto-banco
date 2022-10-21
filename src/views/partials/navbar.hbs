@@ -1,15 +1,17 @@
 <nav class="navbar navbar-dark bg-dark mb-4">
   <div class="container">
-    <a class="navbar-brand" href="/">Sucursal virtual banco de la tierra. </a>
-    <ul class="navbar-nav  list-group-horizontal mr-6">
+    <a class="navbar-brand">Sucursal virtual banco de la tierra. </a>
+    <ul class="navbar-nav  list-group-horizontal">
        {{#if user}}
-       <h1 class="text-white">{{user.email}}</h1>
-        {{#if admin}}
-         <li>
-            <a class="nav-link p3" href="/api/auth/signup">Cuentas</a>
+       {{#if admin}}
+         <li class="mr-4">
+            <a class="nav-link" onclick="showAccounts()">Cuentas</a>
+          </li>
+           <li>
+            <a class="nav-link" onclick="showUsers()">Users</a>
           </li>
          <li>
-            <a class="nav-link p3" href="/api/auth/signup">Register</a>
+            <a class="nav-link" href="/api/auth/signup">Register</a>
           </li>
           {{/if}}
            <li class="nav-item">
