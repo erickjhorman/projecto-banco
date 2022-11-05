@@ -4,7 +4,7 @@ const AccountSchema = Schema(
   {
     userId: [{
       ref: "User",
-      type: Schema.Types.ObjectId
+      type: String
    }],
     accountType: {
       type: String,

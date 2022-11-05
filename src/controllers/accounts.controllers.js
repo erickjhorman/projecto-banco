@@ -1,5 +1,6 @@
 import Account from "../model/Account";
 import {renderUsers, renderUsersLog} from "../controllers/users.controller"
+import mongoose from "mongoose";
 
 export const renderHome = async(req,res) => {
   res.render("index");
@@ -31,22 +32,24 @@ export const createAccount = async (req, res, next) => {
     const cookies = req.headers.cookie.split(";")
     let userId = 0 
     for(let i = 0;i<cookies.length;i++) {
-      if(cookies[i].includes("userId")){
+      if(cookies[i].includes("userId")) {
         userId = cookies[i].substring(8)
        }
    }
-   
-    const {accountType} = req.body
-    const account = new Account({
+   console.log("here ")
+  const {accountType} = req.body
+  const account = new Account({
       userId : userId,
       accountType,
       accountNumber: Math.floor(Math.random() * 1000000000)
     });
    console.log("save accounts",account)
     await account.save();
+    
     req.flash('success_msg',"Cuenta creada")
     res.redirect("/api/auth/dashboard")
   } catch (error) {
+    console.log(error)
     return res.render("error", { errorMessage: error.message });
   }
 };
@@ -57,8 +60,6 @@ export const AccountToggleDone = async (req, res, next) => {
   await account.save();
   res.redirect("/");
 };
-
-
 
 export const renderTaskEdit = async (req, res, next) => {
   const account = await Account.findById(req.params.id).lean();
@@ -78,8 +79,10 @@ export const deleteAccount = async (req, res, next) => {
 };
 
 export const sendUserId = async (req, res) => {
+  console.log("here")
   let { id } = req.params;
   res.cookie('userId', id,{maxAge:2 * 60 * 60 * 1000,httpOnly:true})
+  console.log("local",res.locals.show)
   res.redirect("/api/auth/dashboard");
 };
 
