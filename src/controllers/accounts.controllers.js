@@ -26,9 +26,9 @@ export const renderAccounts = async (req, res) => {
   }
 };
 
-export const createAccount = async (req, res, next) => {
+export const createAccount = async (req, res) => {
+  console.time("Start account creation");
   try {
-    //console.log(req.body)
     const cookies = req.headers.cookie.split(";")
     let userId = 0 
     for(let i = 0;i<cookies.length;i++) {
@@ -36,21 +36,22 @@ export const createAccount = async (req, res, next) => {
         userId = cookies[i].substring(8)
        }
    }
-   console.log("here ")
   const {accountType} = req.body
   const account = new Account({
       userId : userId,
       accountType,
       accountNumber: Math.floor(Math.random() * 1000000000)
     });
-   console.log("save accounts",account)
+    console.log("save accounts",account)
     await account.save();
     
     req.flash('success_msg',"Cuenta creada")
+    console.timeEnd("Start account creation") //Our time
     res.redirect("/api/auth/dashboard")
   } catch (error) {
     console.log(error)
     return res.render("error", { errorMessage: error.message });
+   
   }
 };
 export const AccountToggleDone = async (req, res, next) => {
